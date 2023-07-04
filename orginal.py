@@ -1,20 +1,19 @@
+# imports
 import datetime
 import random
 
 import pyttsx3
-
 import speech_recognition as sr
 import wikipedia
 
+# setup
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 
-random_voice = random.choice(voices)
-random_voice_id = random_voice.id
-
-engine.setProperty('voice', random_voice_id)
+engine.setProperty('voice', random.choice(voices).id)
 
 
+# util functions
 def speak(audio):
     engine.say(audio)
     engine.runAndWait()
@@ -58,15 +57,15 @@ def wish():
     speak('I am Jarvis. How can I help you?')
 
 
+# main program logic
 if __name__ == '__main__':
     wish()
 
-    run = True
+    running = True
 
-    while run:
+    while running:
         cmd = take_command()
 
-        # Login to Execute Task Based on Query ( Command )
         if 'search' in cmd:
             cmd = cmd.replace('search', '', 1)
 
